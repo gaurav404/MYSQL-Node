@@ -10,6 +10,7 @@ class All extends Component {
       alert:false,
       loading:true
     };
+    this.setalert = this.setalert.bind(this);
   }
   onDelete(email){
     axios.post(`/api/delete/${email}`).then((res)=>{
@@ -24,6 +25,11 @@ class All extends Component {
       }
     })
   }
+  setalert(){
+    this.setState({
+      alert:false
+    })
+  }
   componentDidMount(){
     axios.get('/api/all').then(res=>{
       this.setState({
@@ -34,21 +40,23 @@ class All extends Component {
   }
   render(){
     const {users}=this.state
-    const tabledata = users.map((aca,index)=>
-      <tr key={aca.emailId}>
+    const tabledata = users.map((aca,index)=>{
+      var d = new Date(aca.dateTime);
+      return (<tr key={aca.emailId}>
         <td>{index+1}</td>
         <td>{aca.userName}</td>
         <td>{aca.emailId}</td>
         <td>{aca.phoneNo}</td>
-        <td>{aca.dateTime}</td>
+        <td>{d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear()}</td>
         <td><button onClick={this.onDelete.bind(this,aca.emailId)} className="btn btn-danger">Delete</button></td>
-      </tr>
+      </tr>)
+      }
     )
     return(
       <div className="container">
-        {this.state.alert?<div className="alert alert-success" role="alert">
+        {this.state.alert?<div className="alert alert-success" role="alert" >
           <strong>Deleted</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
         </div> : ""}

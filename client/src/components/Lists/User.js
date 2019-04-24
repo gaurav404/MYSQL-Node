@@ -9,7 +9,8 @@ class User extends Component {
       email:'',
       phoneNo:'',
       password:'',
-      loginDate:''
+      loginDate:'',
+      alert:false
     };
   }
   onUpdat(email){
@@ -22,6 +23,18 @@ class User extends Component {
               alert:true
             })
           });
+      }
+    })
+  }
+  onDelete(email){
+    axios.post(`/api/delete/${email}`).then((res)=>{
+      if(res.data.message==="user deleted"){
+          console.log("sdfsdf");
+          this.setState({
+            users:res.data.res,
+            alert:true
+          })
+          setTimeout(()=>{this.props.history.push('/all')},3000);
       }
     })
   }
@@ -41,10 +54,18 @@ class User extends Component {
     })
   }
   render(){
+    var d = new Date(this.state.loginDate);
+
     return (
       <div className="container">
         <br/>
         <br/>
+          {this.state.alert?<div className="alert alert-success" role="alert" >
+            <strong>Deleted</strong>
+              <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div> : ""}
         <h4 className="mb-4">User Details</h4>
         <table className="table">
           <thead>
@@ -63,8 +84,9 @@ class User extends Component {
               <td>{this.state.email}</td>
               <td>{this.state.password}</td>
               <td>{this.state.phoneNo}</td>
-              <td>{this.state.loginDate}</td>
+              <td>{d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear()}</td>
               <td><Link to={`/update/${this.state.email}`} className="btn btn-large" style={{backgroundColor:"rgb(255, 204, 0)",color:"white"}}>Update</Link></td>
+              <td><button onClick={this.onDelete.bind(this,this.state.email)} className="btn btn-danger">Delete</button></td>
             </tr>
           </tbody>
         </table>
