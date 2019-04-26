@@ -67,9 +67,6 @@ class Navbar extends Component {
         </nav>
         {this.state.alert?<div className="alert alert-success" role="alert" >
           <strong>Sorry no such email registered yet!! </strong>
-            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
         </div> : ""}
       </div>
     )

@@ -67,9 +67,6 @@ class User extends Component {
         <br/>
           {this.state.alert?<div className="alert alert-success" role="alert" >
             <strong>Deleted</strong>
-              <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
           </div> : ""}
         <h4 className="mb-4">User Details</h4>
         <table className="table">
