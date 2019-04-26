@@ -3,5 +3,5 @@ module.exports = {
     user: proccess.env.USER,
     database: proccess.env.DATABASE,
     password: proccess.env.PASSWORD,
-    port:process.env.PORT
+    port:3306
 }
