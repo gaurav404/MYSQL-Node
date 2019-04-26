@@ -21,7 +21,13 @@ class All extends Component {
               users:res.data.res,
               alert:true
             })
+            setTimeout(()=>{
+              this.setState({
+                alert:false
+              })
+            },2000)
           });
+
       }
     })
   }
