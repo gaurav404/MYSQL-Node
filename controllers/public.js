@@ -85,8 +85,12 @@ exports.search = (req,res,next)=>{
 
 exports.delete = (req,res,next)=>{
   db.execute('delete from userData where emailId= ?',[req.params.email])
-    .then(([user]) => {
+    .then(([resp]) => {
+      if(resp.affectedRows==0){
+        res.json({message:"no such user to delete"});
+      }else{
         res.json({message:"user deleted"});
+      }
     }).catch(err=>{
         res.status(400).json({email:"some other error occurred"});
   });

@@ -46,7 +46,7 @@ class User extends Component {
         email:res.emailId,
         password:res.password,
         phoneNo:res.phoneNo,
-        loginDate:res.dateTime,
+        loginDate:res.dateTime
       })
       console.log(this.state);
     }).catch(err=>{
@@ -76,6 +76,8 @@ class User extends Component {
               <th>Phone number</th>
               <th>Login Date</th>
               <th></th>
+              <th></th>
+
             </tr>
           </thead>
           <tbody>
