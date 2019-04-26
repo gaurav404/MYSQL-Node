@@ -4,5 +4,5 @@ module.exports = {
     database: 'db_intern',
     password: 'dummyUser01',
     port:3306
-  
+
 }
