@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+console.log(process.env.NODE_ENV);
 const db = require('./util/database');
 const path = require('path');
 const app = express();
