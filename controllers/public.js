@@ -63,6 +63,9 @@ exports.all = (req, res, next)=>{
       if (user.length==0) {
           res.json({res:[]});
       }else{
+        user.sort(function(a,b){
+          return new Date(b.dateTime) - new Date(a.dateTime);
+        });
         res.json({res:user})
       }
   }).catch(err=>{
